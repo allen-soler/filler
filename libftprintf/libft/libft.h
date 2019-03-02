@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 12:49:23 by jallen            #+#    #+#             */
-/*   Updated: 2019/02/11 18:04:49 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/02 20:03:51 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ char				**ft_obstacles(char *str);
 void				ft_print_tab(char **av);
 void				free_array(char **tab);
 int					tab_counter(char **av);
+int					ft_isnumeric(char *src);
 
 #endif

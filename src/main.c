@@ -6,19 +6,19 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 15:47:35 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/01 18:41:06 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/02 21:57:38 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-void	ft_get_player(int fd, t_fl *filler)
+void	ft_get_player(int *ret, int *fd, t_fl *filler)
 {
 	char	*line;
 
 	line = NULL;
 	filler->player = 0;
-	if (get_next_line(fd, &line) == 1)
+	if ((*ret = get_next_line(*fd, &line)) == 1)
 	{
 		if (ft_strncmp("$$$ exec p1", line, 11) == 0)
 		{
@@ -34,14 +34,12 @@ void	ft_get_player(int fd, t_fl *filler)
 	}
 }
 
-void	ft_x_y(char *line, t_fl *filler)
+void	map_int(t_fl *filler)
 {
-	char	**tab;
-	
-	tab = ft_split_whitespaces(line);
-	filler->axis.y = ft_atoi(tab[1]);
-	filler->axis.x = ft_atoi(tab[2]);
-	free_array(tab);
+	while (*filler->map && filler->map)
+	{
+		
+	}
 }
 
 void	get_map(t_fl *filler, int *ret, int *fd)
@@ -63,30 +61,25 @@ void	get_map(t_fl *filler, int *ret, int *fd)
 		free(line);
 		i++;
 	}
+	map_int(filler);
 }
 
-/*void	ft_pieces(t_fl filler, int *ret, int *fd)
+int		ft_parsing(int *ret, int *fd, t_fl *filler)
 {
 	char	*line;
+	char	**tab;
 
+	tab = NULL;
 	line = NULL;
-	*ret = get_next_line(*fd, &line);
-	*ret = get_next_line(*fd, &line);
-}*/
-
-void	ft_parsing(int fd, t_fl filler)
-{
-	char	*line;
-	int		ret;
-
-	line = NULL;
-	ret = 0;
-	while ((ret = get_next_line(fd, &line)) == 1)
+	while ((*ret = get_next_line(*fd, &line)) == 1)
 	{
 		if (ft_strncmp("Plateau", line, 7) == 0)
 		{
-			ft_x_y(line, &filler);
-			get_map(&filler, &ret, &fd);
+			tab = ft_split_whitespaces(line);
+			filler->axis.y = ft_atoi(tab[1]);
+			filler->axis.x = ft_atoi(tab[2]);
+			free_array(tab);
+			get_map(filler, ret, fd);
 		}
 		if (ft_strncmp("Piece", line, 5) == 0)
 			ft_printf("%s\n", line);
@@ -98,11 +91,13 @@ int		main(int ac, char **av)
 {
 	t_fl	filler;
 	int		fd;
+	int		ret;
 
 	(void)ac;
+	ret = 0;
 	fd = open(av[1], O_RDONLY);
-	ft_get_player(fd, &filler);
+	ft_get_player(&ret, &fd, &filler);
 	if (filler.player != 0)
-		ft_parsing(fd, filler);	
-	return (1);
+		ft_parsing(&ret, &fd, &filler);
+	return (0);
 }
