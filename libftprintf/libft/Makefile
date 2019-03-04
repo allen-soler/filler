@@ -6,13 +6,13 @@
 #    By: jallen <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:45:54 by jallen            #+#    #+#              #
-#    Updated: 2019/03/02 20:04:09 by jallen           ###   ########.fr        #
+#    Updated: 2019/03/04 15:28:28 by jallen           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =		libft.a
 
-SRC = 	ft_strlen.c ft_strdup.c ft_strlcat.c ft_strcpy.c ft_strncpy.c	\
+SRC = 	ft_strlen.c ft_strdup.c ft_strlcat.c ft_strcpy.c ft_strncpy.c		\
 			ft_strcat.c ft_strncat.c ft_atoi.c	ft_strchr.c ft_strstr.c 	\
 			ft_strnstr.c ft_strrchr.c ft_strcmp.c ft_strncmp.c  			\
 			ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c  			\
@@ -27,7 +27,8 @@ SRC = 	ft_strlen.c ft_strdup.c ft_strlcat.c ft_strcpy.c ft_strncpy.c	\
 			ft_display.c ft_abs.c ft_strndup.c get_next_line.c				\
 			ft_split_whitespaces.c ft_obstacles.c ft_print_tab.c 			\
 			tab_counter.c ft_putchar_fd.c ft_lstdelone.c ft_isalpha.c		\
-			free_array.c ft_toupper.c ft_isnumeric.c
+			free_array.c ft_toupper.c ft_isnumeric.c free_intray.c			\
+			single_free.c ft_print_int.c									\
 
 OBJ = $(SRC:.c=.o)
 

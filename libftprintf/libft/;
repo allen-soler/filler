@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isnumeric.c                                     :+:      :+:    :+:   */
+/*   ft_print_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 19:58:19 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/03 20:15:15 by jallen           ###   ########.fr       */
+/*   Created: 2019/03/04 14:56:18 by jallen            #+#    #+#             */
+/*   Updated: 2019/03/04 15:27:51 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isnumeric(char *src)
+void	ft_print_int(int **tab, int x, int y)
 {
-	while (*src)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < y)
 	{
-		if (*src <= 48 || *src >= 57)
-			return (0);
-		src++;
+		j = 0;
+		while (j < x)
+		{
+			ft_putnbr(tab[i][j]);
+			j++;
+		}
+		ft_putchar("\n");
+		i++;
 	}
-	return (1);
 }

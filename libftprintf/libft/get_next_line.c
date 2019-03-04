@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 13:57:24 by jallen            #+#    #+#             */
-/*   Updated: 2019/02/08 19:45:39 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/03 20:47:40 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int				get_next_line(const int fd, char **line)
 	}
 	if (ret < BUFF_SIZE && !ft_strlen(tmp->content))
 	{
-		exit(0);
+		single_free(&tmp);
 		return (0);
 	}
 	tmp->content = ft_vef_line(tmp->content, line);

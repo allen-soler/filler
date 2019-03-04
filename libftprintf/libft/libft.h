@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 12:49:23 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/02 20:03:51 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/04 15:28:47 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,8 @@ void				ft_print_tab(char **av);
 void				free_array(char **tab);
 int					tab_counter(char **av);
 int					ft_isnumeric(char *src);
+void				free_intray(int **tab, int nb);
+void				single_free(t_list **head);
+void				ft_print_int(int **tab, int x, int y);
 
 #endif
