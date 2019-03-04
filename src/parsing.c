@@ -6,13 +6,13 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 19:38:45 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/04 16:20:03 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/04 19:38:27 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-void	ft_get_player(int *ret, int *fd, t_fl *filler)
+int		ft_get_player(int *ret, int *fd, t_fl *filler)
 {
 	char	*line;
 
@@ -24,14 +24,17 @@ void	ft_get_player(int *ret, int *fd, t_fl *filler)
 		{
 			filler->player = 'O';
 			filler->enemy = 'X';
+			return (1);
 		}
 		else if (ft_strncmp("$$$ exec p2", line, 11) == 0)
 		{
 			filler->player = 'X';
 			filler->enemy = 'O';
+			return (1);
 		}
 		free(line);
 	}
+	return (0);
 }
 
 void	map_int(t_fl *filler)

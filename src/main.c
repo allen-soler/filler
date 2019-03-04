@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 15:47:35 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/04 15:53:44 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/04 19:42:26 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ int		main(int ac, char **av)
 	fd = 0;
 	filler.map = 0;
 	filler.int_map = 0;
-	ft_get_player(&ret, &fd, &filler);
-	if (filler.player == 1)
+	if (ft_get_player(&ret, &fd, &filler) == 0)
 		return (msg_error());
 	else if (ft_parsing(&ret, &fd, &filler) == 1)
 		ft_heatmap(&filler);
