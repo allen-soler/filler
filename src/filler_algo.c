@@ -1,32 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_int.c                                     :+:      :+:    :+:   */
+/*   filler_algo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 14:56:18 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/04 15:27:51 by jallen           ###   ########.fr       */
+/*   Created: 2019/03/05 17:16:04 by jallen            #+#    #+#             */
+/*   Updated: 2019/03/05 17:58:09 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/filler.h"
 
-void	ft_print_int(int **tab, int x, int y)
-{
-	int	i;
-	int	j;
 
-	i = 0;
-	while (i < y)
-	{
-		j = 0;
-		while (j < x)
-		{
-			ft_putnbr(tab[i][j]);
-			j++;
-		}
-		ft_putchar("\n");
-		i++;
-	}
-}

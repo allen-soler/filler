@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 13:57:24 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/03 20:47:40 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/05 16:30:12 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char			*ft_vef_line(char *tmp, char **line)
 	{
 		*line = ft_strdup(tmp);
 		free(ptr);
-		tmp = ft_strdup("");
+		tmp = NULL;
 		return (tmp);
 	}
 	if (!(*line = ft_strsub(tmp, 0, index - tmp)))

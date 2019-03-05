@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_heatmap.c                                       :+:      :+:    :+:   */
+/*   heatmap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 15:32:30 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/04 19:32:34 by jallen           ###   ########.fr       */
+/*   Created: 2019/03/05 13:08:31 by jallen            #+#    #+#             */
+/*   Updated: 2019/03/05 17:15:56 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-void	print_matrix(int **m, t_point size)
+static void	print_matrix(int **m, t_point size)
 {
 	t_point p;
 
@@ -30,7 +30,7 @@ void	print_matrix(int **m, t_point size)
 	}
 }
 
-void	init_heatmap(t_fl *filler, int x, int y, t_point p)
+static void	init_heatmap(t_fl *filler, int x, int y, t_point p)
 {
 	if (y - 1 >= 0 && filler->int_map[y - 1][x] == 0)
 		filler->int_map[y - 1][x] = 1;
@@ -50,7 +50,7 @@ void	init_heatmap(t_fl *filler, int x, int y, t_point p)
 		filler->int_map[y - 1][x - 1] = 1;
 }
 
-void	pos_heatmap(t_fl *filler, int x, int y, int index)
+static void	pos_heatmap(t_fl *filler, int x, int y, int index)
 {
 	t_point	p;
 
@@ -74,7 +74,7 @@ void	pos_heatmap(t_fl *filler, int x, int y, int index)
 		filler->int_map[y - 1][x - 1] = index + 1;
 }
 
-void	max_heatmap(t_fl *filler, t_point size)
+static void	max_heatmap(t_fl *filler, t_point size)
 {
 	t_point	p;
 	int		i;
@@ -98,7 +98,7 @@ void	max_heatmap(t_fl *filler, t_point size)
 	}
 }
 
-void	ft_heatmap(t_fl *filler)
+void		ft_heatmap(t_fl *filler)
 {
 	int	i;
 	int	j;
@@ -116,5 +116,5 @@ void	ft_heatmap(t_fl *filler)
 		i++;
 	}
 	max_heatmap(filler, filler->axis);
-	print_matrix(filler->int_map, filler->axis);
+	filler_algo(filler);
 }

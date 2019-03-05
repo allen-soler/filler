@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 15:47:35 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/04 19:42:26 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/05 17:58:08 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,19 @@ int		msg_error(void)
 int		main(int ac, char **av)
 {
 	t_fl	filler;
-	int		fd;
-	int		ret;
 
 	(void)ac;
 	(void)av;
-	ret = 0;
-	fd = 0;
 	filler.map = 0;
 	filler.int_map = 0;
-	if (ft_get_player(&ret, &fd, &filler) == 0)
+	if (ft_get_player(&filler) == 0)
 		return (msg_error());
-	else if (ft_parsing(&ret, &fd, &filler) == 1)
+	else if (ft_parsing(&filler) == 1)
 		ft_heatmap(&filler);
 	else
 		return (msg_error());
+	ft_print_tab(filler.piece);
+	free_array(filler.piece);
 	free_intray(filler.int_map, filler.axis.y);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: jallen <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/24 13:48:04 by jallen            #+#    #+#              #
-#    Updated: 2019/03/04 18:21:00 by jallen           ###   ########.fr        #
+#    Updated: 2019/03/05 13:08:43 by jallen           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ DIR_H = includes
 
 SOURCES = main.c\
 		  parsing.c\
-		  ft_heatmap.c\
+		  heatmap.c\
 
 SRCS = $(addprefix $(DIR_S)/, $(SOURCES))
 
