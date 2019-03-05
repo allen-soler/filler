@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 20:01:49 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/05 17:04:38 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/05 23:35:48 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct	s_fl
 {
 	int			player;
 	int			enemy;
+	char		*vef_piece;
 	char		**piece;
 	char		**map;
 	int			**int_map;
@@ -38,9 +39,10 @@ typedef struct	s_fl
 int		ft_parsing(t_fl *filler);
 int		ft_get_player(t_fl *filler);
 /*
-** Heatmap
+** Heatmap && Algo
 */
 void	ft_heatmap(t_fl *filler);
+void	filler_algo(t_fl *filler);
 /*
 ** Errors
 */

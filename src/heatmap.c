@@ -6,29 +6,20 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 13:08:31 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/05 17:15:56 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/05 23:19:22 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-static void	print_matrix(int **m, t_point size)
-{
-	t_point p;
-
-	p.y = 0;
-	while (p.y < size.y)
-	{
-		p.x = 0;
-		while (p.x < size.x)
-		{
-			ft_printf("%-3d", m[p.y][p.x]);
-			p.x += 1;
-		}
-		ft_printf("\n");
-		p.y += 1;
-	}
-}
+/*
+**init heatmap : init all enemy sides to 1
+**for example : enemy number is always -2
+**	....		.1 11
+**	..x.	-> 	.1-21
+** 	....		.1 11
+**	if orders is clockwise starting for 12
+*/
 
 static void	init_heatmap(t_fl *filler, int x, int y, t_point p)
 {

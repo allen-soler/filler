@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 19:38:45 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/05 17:13:37 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/05 23:58:31 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ int			ft_get_player(t_fl *filler)
 	{
 		if (ft_strncmp("$$$ exec p1", line, 11) == 0)
 		{
-			filler->player = 'O';
-			filler->enemy = 'X';
+			filler->player = -1;
+			filler->enemy = -2;
 			free(line);
 			return (1);
 		}
 		else if (ft_strncmp("$$$ exec p2", line, 11) == 0)
 		{
-			filler->player = 'X';
-			filler->enemy = 'O';
+			filler->player = -1;
+			filler->enemy = -2;
 			free(line);
 			return (1);
 		}
@@ -71,8 +71,8 @@ static int	get_map(t_fl *filler)
 	char	*line;
 	int		i;
 
-	i = 0;
 	line = NULL;
+	i = 0;
 	if (get_next_line(0, &line) < 0)
 		return (0);
 	free(line);
@@ -94,20 +94,19 @@ static int	get_map(t_fl *filler)
 	return (1);
 }
 
-static int	get_piece(t_fl *filler)
+static int	get_piece(t_fl *filler, int i)
 {
 	char	*line;
-	int		i;
 
 	line = NULL;
-	i = 1;
 	if (get_next_line(0, &line) > 0)
 	{
 		if (ft_strncmp("Piece", line, 5) == 0)
 		{
-			if (!(filler->piece = (char **)malloc(sizeof(char *) * 4)))
+			filler->vef_piece = ft_strdup(line);
+			if (!(filler->piece = (char **)malloc(sizeof(char *)\
+							* ft_atoi(&line[5] + 1))))
 				return (0);
-			filler->piece[0] = ft_strdup(line);
 			free(line);
 			while (get_next_line(0, &line) > 0)
 			{
@@ -146,6 +145,6 @@ int			ft_parsing(t_fl *filler)
 		}
 		free(line);
 	}
-	get_piece(filler);
+	get_piece(filler, 0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 15:47:35 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/05 17:58:08 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/05 22:58:38 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		main(int ac, char **av)
 		ft_heatmap(&filler);
 	else
 		return (msg_error());
-	ft_print_tab(filler.piece);
+	free(filler.vef_piece);
 	free_array(filler.piece);
 	free_intray(filler.int_map, filler.axis.y);
 	return (0);
