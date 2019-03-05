@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 19:38:45 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/05 23:58:31 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/06 00:00:42 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static int	get_piece(t_fl *filler, int i)
 {
 	char	*line;
 
-	line = NULL;
+	ltine = NULL;
 	if (get_next_line(0, &line) > 0)
 	{
 		if (ft_strncmp("Piece", line, 5) == 0)
