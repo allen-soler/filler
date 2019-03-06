@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 13:08:31 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/05 23:19:22 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/06 20:16:35 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	max_heatmap(t_fl *filler, t_point size)
 	}
 }
 
-void		ft_heatmap(t_fl *filler)
+void		ft_heatmap(t_fl *filler, t_point *pos)
 {
 	int	i;
 	int	j;
@@ -107,5 +107,5 @@ void		ft_heatmap(t_fl *filler)
 		i++;
 	}
 	max_heatmap(filler, filler->axis);
-	filler_algo(filler);
+	filler_algo(filler, pos);
 }

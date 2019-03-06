@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 12:49:23 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/04 15:28:47 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/06 22:07:07 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <sys/uio.h>
 # include <unistd.h>
 # include <fcntl.h>
-# define BUFF_SIZE 1024
+# define BUFF_SIZE 1000
 
 typedef struct		s_list
 {
@@ -104,5 +104,6 @@ int					ft_isnumeric(char *src);
 void				free_intray(int **tab, int nb);
 void				single_free(t_list **head);
 void				ft_print_int(int **tab, int x, int y);
+int					simple_gnl(char **line);
 
 #endif

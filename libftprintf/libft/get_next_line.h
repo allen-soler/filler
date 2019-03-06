@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_array.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/11 18:02:56 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/06 17:04:54 by jallen           ###   ########.fr       */
+/*   Created: 2019/03/06 20:56:57 by jallen            #+#    #+#             */
+/*   Updated: 2019/03/06 21:04:13 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# define BUFF_SIZE1 10000
 
-void	free_array(char **tab)
-{
-	int	i;
+# include "libft.h"
+# include <fcntl.h>
+# include <unistd.h>
 
-	i = 0;
-	while (tab[i])
-	{
-		if (tab[i])
-			free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
+int		get_next_line(const int fd, char **line);
+int		simple_gnl(char **line);
+
+#endif

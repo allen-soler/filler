@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 20:01:49 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/05 23:35:48 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/06 22:21:40 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ typedef struct	s_point
 
 typedef struct	s_fl
 {
-	int			player;
-	int			enemy;
-	char		*vef_piece;
-	char		**piece;
 	char		**map;
+	char		**piece;
+	char		**vef_piece;
 	int			**int_map;
+	int			enemy;
+	int			player;
+	int			score;
 	t_point		axis;
 }				t_fl;
 
@@ -41,8 +42,8 @@ int		ft_get_player(t_fl *filler);
 /*
 ** Heatmap && Algo
 */
-void	ft_heatmap(t_fl *filler);
-void	filler_algo(t_fl *filler);
+void	ft_heatmap(t_fl *filler, t_point *pos);
+void	filler_algo(t_fl *filler, t_point *pos);
 /*
 ** Errors
 */

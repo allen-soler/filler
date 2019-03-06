@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 19:38:45 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/06 00:00:42 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/06 22:20:53 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ int			ft_get_player(t_fl *filler)
 	{
 		if (ft_strncmp("$$$ exec p1", line, 11) == 0)
 		{
-			filler->player = -1;
-			filler->enemy = -2;
+			filler->player = 'O';
+			filler->enemy = 'X';
 			free(line);
 			return (1);
 		}
 		else if (ft_strncmp("$$$ exec p2", line, 11) == 0)
 		{
-			filler->player = -1;
-			filler->enemy = -2;
+			filler->player = 'X';
+			filler->enemy = 'O';
 			free(line);
 			return (1);
 		}
@@ -76,7 +76,7 @@ static int	get_map(t_fl *filler)
 	if (get_next_line(0, &line) < 0)
 		return (0);
 	free(line);
-	if (!(filler->map = (char **)malloc(sizeof(char *) * filler->axis.y + 1)))
+	if (!(filler->map = (char **)malloc(sizeof(char *) * (filler->axis.y + 1))))
 		return (0);
 	while (i < filler->axis.y && get_next_line(0, &line) > 0)
 	{
@@ -94,21 +94,21 @@ static int	get_map(t_fl *filler)
 	return (1);
 }
 
-static int	get_piece(t_fl *filler, int i)
+static int	get_piece(t_fl *filler, int i, int j)
 {
 	char	*line;
 
-	ltine = NULL;
+	line = NULL;
 	if (get_next_line(0, &line) > 0)
 	{
 		if (ft_strncmp("Piece", line, 5) == 0)
 		{
-			filler->vef_piece = ft_strdup(line);
+			filler->vef_piece = ft_split_whitespaces(line);
 			if (!(filler->piece = (char **)malloc(sizeof(char *)\
-							* ft_atoi(&line[5] + 1))))
+							* (ft_atoi(filler->vef_piece[1]) + 1))))
 				return (0);
 			free(line);
-			while (get_next_line(0, &line) > 0)
+			while (++j < ft_atoi(filler->vef_piece[1]) && get_next_line(0, &line) > 0)
 			{
 				filler->piece[i] = ft_strdup(line);
 				i++;
@@ -129,7 +129,7 @@ int			ft_parsing(t_fl *filler)
 
 	tab = NULL;
 	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	if (get_next_line(0, &line) > 0)
 	{
 		if (ft_strncmp("Plateau", line, 7) == 0)
 		{
@@ -140,11 +140,9 @@ int			ft_parsing(t_fl *filler)
 			free_array(tab);
 			if (get_map(filler) == 0)
 				return (msg_error());
-			else
-				break ;
 		}
-		free(line);
 	}
-	get_piece(filler, 0);
+	if (get_piece(filler, 0, -1) == 0)
+		return (0);
 	return (1);
 }

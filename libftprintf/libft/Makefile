@@ -6,7 +6,7 @@
 #    By: jallen <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:45:54 by jallen            #+#    #+#              #
-#    Updated: 2019/03/04 15:28:28 by jallen           ###   ########.fr        #
+#    Updated: 2019/03/06 21:03:41 by jallen           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC = 	ft_strlen.c ft_strdup.c ft_strlcat.c ft_strcpy.c ft_strncpy.c		\
 			ft_split_whitespaces.c ft_obstacles.c ft_print_tab.c 			\
 			tab_counter.c ft_putchar_fd.c ft_lstdelone.c ft_isalpha.c		\
 			free_array.c ft_toupper.c ft_isnumeric.c free_intray.c			\
-			single_free.c ft_print_int.c									\
+			single_free.c ft_print_int.c simple_gnl.c						\
 
 OBJ = $(SRC:.c=.o)
 
