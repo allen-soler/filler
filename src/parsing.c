@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 19:38:45 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/07 15:34:14 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/07 18:18:08 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			ft_get_player(t_fl *filler)
 
 	line = NULL;
 	filler->player = 0;
-	if (get_next_line(0, &line) > 0)
+	if (gnl(0, &line) > 0)
 	{
 		if (ft_strncmp("$$$ exec p1", line, 11) == 0)
 		{
@@ -73,12 +73,12 @@ static int	get_map(t_fl *filler)
 
 	line = NULL;
 	i = 0;
-	if (get_next_line(0, &line) < 0)
+	if (gnl(0, &line) < 0)
 		return (0);
 	free(line);
 	if (!(filler->map = (char **)malloc(sizeof(char *) * (filler->axis.y + 1))))
 		return (0);
-	while (i < filler->axis.y && get_next_line(0, &line) > 0)
+	while (i < filler->axis.y && gnl(0, &line) > 0)
 	{
 		filler->map[i] = ft_strdup(&line[4]);
 		if ((int)ft_strlen(filler->map[i]) != filler->axis.x)
@@ -106,7 +106,7 @@ static int	get_piece(t_fl *filler, int i, int j, char *src)
 						* (ft_atoi(filler->vef_piece[1]) + 1))))
 			return (0);
 		free(line);
-		while (++j < ft_atoi(filler->vef_piece[1]) && get_next_line(0, &line) > 0)
+		while (++j < ft_atoi(filler->vef_piece[1]) && gnl(0, &line) > 0)
 		{
 			filler->piece[i] = ft_strdup(line);
 			i++;
@@ -123,12 +123,13 @@ int			ft_parsing(t_fl *filler)
 {
 	char	*line;
 	char	**tab;
+	int		ret;
 
 	tab = NULL;
 	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	while ((ret = gnl(0, &line))> 0)
 	{
-		if (ft_strncmp("Plateau", line, 7) == 0)
+		if (line && ft_strncmp("Plateau", line, 7) == 0)
 		{
 			tab = ft_split_whitespaces(line);
 			filler->axis.y = ft_atoi(tab[1]);
@@ -137,9 +138,13 @@ int			ft_parsing(t_fl *filler)
 			if (get_map(filler) == 0)
 				return (0);
 		}
-		if (ft_strncmp("Piece", line, 5) == 0)
-			if (get_piece(filler, 0, -1, line) == 1)
-				ft_heatmap(filler);
+		else if (line &&ft_strncmp("Piece", line, 5) == 0 && line)
+		{
+			get_piece(filler, 0, -1, line);
+			ft_heatmap(filler);
+			if (filler_algo(filler) == 0)
+				break ;
+		}
 		free(line);
 	}
 	return (1);

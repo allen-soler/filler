@@ -6,13 +6,13 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 14:33:01 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/07 15:32:15 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/07 17:38:50 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "get_next_line.h"
-#include "stdio.h"
+
 static t_list	*get_current_file(t_list **file, const int fd)
 {
 	t_list	*ptr;

@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 13:08:31 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/07 15:26:06 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/07 18:13:41 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,4 @@ void		ft_heatmap(t_fl *filler)
 		i++;
 	}
 	max_heatmap(filler, filler->axis);
-	filler_algo(filler);
-	free_array(filler->vef_piece);
-	free_array(filler->piece);
-	free_intray(filler->int_map, filler->axis.y);
 }
