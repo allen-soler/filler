@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 12:49:23 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/06 22:07:07 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/07 14:48:31 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # define BUFF_SIZE 1000
+# define GNL_BUFF_SIZE 1000
 
 typedef struct		s_list
 {
@@ -105,5 +106,9 @@ void				free_intray(int **tab, int nb);
 void				single_free(t_list **head);
 void				ft_print_int(int **tab, int x, int y);
 int					simple_gnl(char **line);
+int					gnl(const int fd, char **line);
+int					ft_lst_free_link(t_list **lst, t_list *link);
+t_list				*ft_lst_push_back(t_list **lst, void *content,
+		size_t content_size);
 
 #endif

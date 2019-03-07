@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 20:01:49 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/06 22:23:05 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/07 14:54:11 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int		ft_get_player(t_fl *filler);
 /*
 ** Heatmap && Algo
 */
-void	ft_heatmap(t_fl *filler, t_point *pos);
-void	filler_algo(t_fl *filler, t_point *pos);
+void	ft_heatmap(t_fl *filler);
+void	filler_algo(t_fl *filler);
 /*
 ** Errors
 */

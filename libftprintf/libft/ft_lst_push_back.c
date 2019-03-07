@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lst_push_back.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/01 15:47:35 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/07 15:22:31 by jallen           ###   ########.fr       */
+/*   Created: 2019/03/07 14:47:21 by jallen            #+#    #+#             */
+/*   Updated: 2019/03/07 14:47:32 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/filler.h"
+#include "libft.h"
 
-int		msg_error(void)
+t_list		*ft_lst_push_back(t_list **lst, void *content, size_t content_size)
 {
-	ft_fprintf(2, "map_error\n");
-	return (0);
-}
+	t_list		*tmp;
 
-int		main(void)
-{
-	t_fl	filler;
-
-	filler.vef_piece = 0;
-	filler.score = 0;
-	filler.map = 0;
-	filler.int_map = 0;
-	if (ft_get_player(&filler) == 1)
-		ft_parsing(&filler);
-	return (0);
+	if (*lst)
+	{
+		tmp = *lst;
+		while (tmp->next)
+			tmp = tmp->next;
+		if (!(tmp->next = ft_lstnew(content, content_size)))
+			return (NULL);
+		tmp = tmp->next;
+	}
+	else
+	{
+		if (!(*lst = ft_lstnew(content, content_size)))
+			return (NULL);
+		tmp = *lst;
+	}
+	return (tmp);
 }

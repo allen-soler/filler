@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 17:16:04 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/06 22:23:03 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/07 15:25:02 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,41 +54,48 @@ void		pos_cal(t_fl *filler, t_point p, t_point tab, t_point *pos)
 					else if (filler->int_map[p.y + axis.y][p.x + axis.x] == -2)
 						return ;
 					else
-						score = filler->int_map[p.y][p.x] + score;
-						pos->x = p.x;
-						pos->y = p.y;
+						score = filler->int_map[p.y + axis.y][p.x + axis.x] - score;
 				}
 			}
 			axis.x++;
 		}
 		axis.y++;
 	}
-
 	if (filler->score == 0 || filler->score > score)
+	{
 		filler->score = score;
+		pos->x = p.x;
+		pos->y = p.y;
+	}
 }
 
-void	filler_algo(t_fl *filler, t_point *pos)
+void	filler_algo(t_fl *filler)
 {
 	t_point	p;
 	t_point	tab;
+	t_point	pos;
 
-	filler->score = filler->axis.x;
+	filler->score = 0;
 	tab.x = ft_atoi(filler->vef_piece[2]);
 	tab.y = ft_atoi(filler->vef_piece[1]);
 	p.y = 0;
+	pos.y = 0;
+	pos.x = 0;
+	ft_fprintf(2, "THIS %i\n", filler->score);
 	while (p.y < filler->axis.y)
 	{
 		p.x = 0;
 		while (p.x < filler->axis.x)
 		{
-			pos_cal(filler, p, tab, pos);
+			pos_cal(filler, p, tab, &pos);
 			p.x++;
 		}
+		if (filler->score == -1)
+			break ;
 		p.y++;
 	}
-	ft_putnbr(pos->y);
+	ft_putnbr(pos.y);
 	ft_putchar(' ');
-	ft_putnbr(pos->x);
+	ft_putnbr(pos.x);
 	ft_putchar('\n');
 }

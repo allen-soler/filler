@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lst_free_link.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/01 15:47:35 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/07 15:22:31 by jallen           ###   ########.fr       */
+/*   Created: 2019/03/07 14:44:40 by jallen            #+#    #+#             */
+/*   Updated: 2019/03/07 14:48:17 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/filler.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int		msg_error(void)
+int	ft_lst_free_link(t_list **lst, t_list *link)
 {
-	ft_fprintf(2, "map_error\n");
-	return (0);
-}
+	t_list		*tmp;
+	t_list		*tmp_late;
 
-int		main(void)
-{
-	t_fl	filler;
-
-	filler.vef_piece = 0;
-	filler.score = 0;
-	filler.map = 0;
-	filler.int_map = 0;
-	if (ft_get_player(&filler) == 1)
-		ft_parsing(&filler);
+	tmp_late = NULL;
+	if (!(tmp = *lst))
+		return (0);
+	while (tmp && tmp != link)
+	{
+		tmp_late = tmp;
+		tmp = tmp->next;
+	}
+	if (tmp == link)
+	{
+		if (tmp_late)
+			tmp_late->next = tmp->next;
+		else
+			*lst = link->next;
+		if (link->content)
+			free(link->content);
+		free(link);
+		return (1);
+	}
 	return (0);
 }
