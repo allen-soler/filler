@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 19:38:45 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/08 11:56:00 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/08 14:07:14 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,18 +122,17 @@ static int	get_piece(t_fl *filler, char *src)
 void		ft_parsing(t_fl *filler)
 {
 	char	*line;
-	char	**tab;
 
-	tab = NULL;
+	filler->map = NULL;
 	line = NULL;
 	while (gnl(0, &line) > 0)
 	{
 		if (line && ft_strncmp("Plateau", line, 7) == 0)
 		{
-			tab = ft_split_whitespaces(line);
-			filler->axis.y = ft_atoi(tab[1]);
-			filler->axis.x = ft_atoi(tab[2]);
-			free_array(tab);
+			filler->map = ft_split_whitespaces(line);
+			filler->axis.y = ft_atoi(filler->map[1]);
+			filler->axis.x = ft_atoi(filler->map[2]);
+			free_array(filler->map);
 			if (get_map(filler) == 0)
 				return ;
 		}
@@ -145,4 +144,6 @@ void		ft_parsing(t_fl *filler)
 		}
 		free(line);
 	}
+	if (line)
+		free(line);
 }
