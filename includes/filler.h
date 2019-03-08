@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 20:01:49 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/07 18:15:18 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/08 12:24:27 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ typedef struct	s_point
 	int			y;
 }				t_point;
 
+typedef struct	s_tools
+{
+	int			score;
+	int			valid;
+	int			counter;
+	t_point		axis;
+}				t_tools;
+
 typedef struct	s_fl
 {
 	char		**map;
@@ -33,20 +41,19 @@ typedef struct	s_fl
 	int			score;
 	t_point		axis;
 }				t_fl;
-
 /*
 ** Parsing
 */
-int		ft_parsing(t_fl *filler);
-int		ft_get_player(t_fl *filler);
+int				ft_get_player(t_fl *filler);
+void			ft_parsing(t_fl *filler);
 /*
 ** Heatmap && Algo
 */
-void	ft_heatmap(t_fl *filler);
-int		filler_algo(t_fl *filler);
+int				ft_heatmap(t_fl *filler);
+void			filler_algo(t_fl *filler, t_point *pos);
 /*
 ** Errors
 */
-int		msg_error(void);
+int				msg_error(void);
 
 #endif

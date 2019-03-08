@@ -6,7 +6,7 @@
 /*   By: jallen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 19:38:45 by jallen            #+#    #+#             */
-/*   Updated: 2019/03/07 18:18:08 by jallen           ###   ########.fr       */
+/*   Updated: 2019/03/08 11:56:00 by jallen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,52 +82,51 @@ static int	get_map(t_fl *filler)
 	{
 		filler->map[i] = ft_strdup(&line[4]);
 		if ((int)ft_strlen(filler->map[i]) != filler->axis.x)
-			return (0);
+			return (msg_error());
 		free(line);
 		i++;
 	}
 	if (i != filler->axis.y)
-		return (0);
+		return (msg_error());
 	filler->map[i] = NULL;
 	map_int(filler);
 	free_array(filler->map);
 	return (1);
 }
 
-static int	get_piece(t_fl *filler, int i, int j, char *src)
+static int	get_piece(t_fl *filler, char *src)
 {
 	char	*line;
+	int		i;
+	int		j;
+	int		size;
 
-	line = ft_strdup(src);
-	if (ft_strncmp("Piece", line, 5) == 0)
-	{
-		filler->vef_piece = ft_split_whitespaces(line);
-		if (!(filler->piece = (char **)malloc(sizeof(char *)\
-						* (ft_atoi(filler->vef_piece[1]) + 1))))
-			return (0);
-		free(line);
-		while (++j < ft_atoi(filler->vef_piece[1]) && gnl(0, &line) > 0)
-		{
-			filler->piece[i] = ft_strdup(line);
-			i++;
-			free(line);
-		}
-		filler->piece[i] = NULL;
-	}
-	else
+	i = 0;
+	j = -1;
+	line = NULL;
+	filler->vef_piece = ft_split_whitespaces(src);
+	size = ft_atoi(filler->vef_piece[1]);
+	if (!(filler->piece = (char **)malloc(sizeof(char *) * (1 + size))))
 		return (0);
+	free(line);
+	while (++j < size && gnl(0, &line) > 0)
+	{
+		filler->piece[i] = ft_strdup(line);
+		i++;
+		free(line);
+	}
+	filler->piece[i] = NULL;
 	return (1);
 }
 
-int			ft_parsing(t_fl *filler)
+void		ft_parsing(t_fl *filler)
 {
 	char	*line;
 	char	**tab;
-	int		ret;
 
 	tab = NULL;
 	line = NULL;
-	while ((ret = gnl(0, &line))> 0)
+	while (gnl(0, &line) > 0)
 	{
 		if (line && ft_strncmp("Plateau", line, 7) == 0)
 		{
@@ -136,16 +135,14 @@ int			ft_parsing(t_fl *filler)
 			filler->axis.x = ft_atoi(tab[2]);
 			free_array(tab);
 			if (get_map(filler) == 0)
-				return (0);
+				return ;
 		}
-		else if (line &&ft_strncmp("Piece", line, 5) == 0 && line)
+		else if (line && ft_strncmp("Piece", line, 5) == 0 && line)
 		{
-			get_piece(filler, 0, -1, line);
-			ft_heatmap(filler);
-			if (filler_algo(filler) == 0)
+			get_piece(filler, line);
+			if (ft_heatmap(filler) == 0)
 				break ;
 		}
 		free(line);
 	}
-	return (1);
 }
